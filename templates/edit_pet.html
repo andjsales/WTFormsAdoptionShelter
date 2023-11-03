@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{pet.name.capitalize()}}
+{% endblock %}
+
+{% block content %}
+<h2>{{ pet.name.capitalize() }}</h2>
+
+<strong>Species:</strong> {{ pet.species.capitalize() }}<br>
+
+{% if pet.photo_url %}
+<img src="{{ pet.photo_url }}" alt="{{ pet.name }}" width="100"><br>
+{% endif %}
+
+{% if pet.age %}
+<strong>Age:</strong> {{ pet.age }}
+{% endif %}
+<br><br>
+
+<div class="form-group">
+    <h3>Edit Information</h3>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p>{{ form.photo_url.label }}<br>{{ form.photo_url() }}</p>
+        <p>{{ form.notes.label }}<br>{{ form.notes() }}</p>
+        <p>{{ form.available.label }} {{ form.available() }}</p>
+        <button class="btn btn-success btn-lg">Submit</button>
+        <a href="/" class="btn btn-danger btn-lg">Cancel</a>
+    </form>
+</div>
+{% endblock %}
